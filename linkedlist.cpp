@@ -33,8 +33,16 @@ void insertAtTail(node *&tail, int data)
 
 // function to insert node at any position
 
-void insertAtPosition(node *&head, int position, int data)
+void insertAtPosition(node* &head,node* &tail  int position, int data)
 {
+     // insert at head
+    if (position == 1)
+    {
+        insertAtHead(head, data);
+        return;
+    }
+    
+    
     node *temp = head;
     int cnt = 1;
 
@@ -42,6 +50,14 @@ void insertAtPosition(node *&head, int position, int data)
     {
         temp = temp->next;
         cnt++;
+    }
+    
+    // insert at last
+
+    if (temp->next == NULL)
+    {
+        insertAtTail(tail, data);
+        return;
     }
 
     node *insertNode = new node(data);
@@ -76,7 +92,7 @@ int main()
 
     print(head);
 
-    insertAtPosition(head, 3, 89);
+    insertAtPosition(head,tail, 3, 89);
     print(head);
 
     return 0;
